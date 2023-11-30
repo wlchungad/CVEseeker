@@ -9,30 +9,27 @@
 </ul> 
 
 <h2>Prerequisites:</h2>
-<p>Please install the following modules before using:</p>
+<p>The following modules will be used:</p>
 <ul>
   <li>selenium</li>
   <li>openpyxl</li>
   <li>validators</li>
 </ul> 
-
-```console
-pip install -r requirements.txt
-```
+<p>You can refer to <u>requirements.txt</u>, but you need not install modules with command.</p>
 
 <h2>How to use:</h2>
 <ol>
-  <li>call the python with anaconda / python console</li>
-  <li>run the python file</li>
-</ol> 
-<h3>CMD:</h3>
-
-```console
-cd /d <path/to/folder>
-python main.py
-```
-
-<p>Link format: https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
+  <li>
+    <p>Double-click and run the executive file.</p>
+  </li>
+  <li>
+    <p>Input the GovCERT link.</p>
+    <p>Link format: https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
+  </li>
+  <li>
+    <p>Go to output folder and get your result!</p>
+  </li>
+</ol>
 
 <h2>Note:</h2>
 <p>NIL</p>
