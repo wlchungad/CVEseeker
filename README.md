@@ -35,4 +35,4 @@ python main.py
 <p>Link format: https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 
 <h2>Note:</h2>
-<p>NIL</p>
+<p>For those who prefer not to / cannot install, please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version.</p>
