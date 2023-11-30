@@ -35,3 +35,4 @@ python main.py
 <p>Link format: https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 
 <h2>Note:</h2>
+<p>NIL</p>
