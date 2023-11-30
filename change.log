@@ -1,50 +1,50 @@
 2023-11-08: 
-	+ Patch List Processor: highlight MS Update xlsx
-	+ Link Processor: Get CVE codes for other modules and Patch files
-	+ CVE Downloader: Get justification/reason of each CVE and patching
++ Patch List Processor: highlight MS Update xlsx
++ Link Processor: Get CVE codes for other modules and Patch files
++ CVE Downloader: Get justification/reason of each CVE and patching
 2023-11-09: 
-	+ setting.py: global constants (call by setting.<variable_name>)
-	+ ClearFile.py: to remove files after finish (currently only "CVE List.txt")
++ setting.py: global constants (call by setting.<variable_name>)
++ ClearFile.py: to remove files after finish (currently only "CVE List.txt")
 2023-11-13:
-	+ added readme
-	+ now the output.csv is more organized for copying to xlsx
-	+ added function to auto-download microsoft xlsx file (almost)
-	+ ClearFile.py: now includes all intermediate files, all sent to output folder
++ added readme
++ now the output.csv is more organized for copying to xlsx
++ added function to auto-download microsoft xlsx file (almost)
++ ClearFile.py: now includes all intermediate files, all sent to output folder
 2023-11-14:
-	+ Change the gov link from Hard-coding to prompt (user manual edited)
-		-> validation
-		-> URL format check
++ Change the gov link from Hard-coding to prompt (user manual edited)
+	-> validation
+	-> URL format check
 2023-11-15:
-	+ fixed typos
-		+ readme instructions
-		+ covered "System Center Operations Manager (SCOM) 2016" in setting
-	+ tried to automate date selection (should work now)
-	+ patched PatchListProcessor 
-		- grey  : CVE not related
-		- orange: (CVE related & product related) or (Win Server 2016 & .NET Framework)
-		- green : (CVE related & product unrelated)
++ fixed typos
+	+ readme instructions
+	+ covered "System Center Operations Manager (SCOM) 2016" in setting
++ tried to automate date selection (should work now)
++ patched PatchListProcessor 
+	- grey  : CVE not related
+	- orange: (CVE related & product related) or (Win Server 2016 & .NET Framework)
+	- green : (CVE related & product unrelated)
 2023-11-16: (v0.1 - v0.2)
-	+ packaged to main.exe by pyinstaller (v0.1 - deleted)
-		- it can function properly, but still need the access of local "Downloads" folder
-		  "pyinstaller --onefile main.py"
-	+ tested issues of scrapping in MSRC (v0.2)
++ packaged to main.exe by pyinstaller (v0.1 - deleted)
+	- it can function properly, but still need the access of local "Downloads" folder
+	  "pyinstaller --onefile main.py"
++ tested issues of scrapping in MSRC (v0.2)
 2023-11-17: (v0.3 - v0.7)
-	+ bug fix: If a past MSRC Excel exists, then os.rename cannot overwrite (v0.3)
-		- now added a small function to check and/or remove old files before renaming
-	+ update: increase timeout of waiting MSRC website to 15 seconds (v0.4)
-	+ CLI UI update
-	+ Tested on PC using Chinese, now MSRC is fixed to use en-US (v0.5)
-	+ Enhanced indicator texts
-	+ Improved the timeout issue with :
-		- "Retry" options
-		- Placeholder in case all else have failed
-	+ changed to "relative" "Downloads" folder (not hard-coding/ Absolute address) (v0.6)
-	+ changed to dynamic threshold (period: 5s) (v0.7)
++ bug fix: If a past MSRC Excel exists, then os.rename cannot overwrite (v0.3)
+	- now added a small function to check and/or remove old files before renaming
++ update: increase timeout of waiting MSRC website to 15 seconds (v0.4)
++ CLI UI update
++ Tested on PC using Chinese, now MSRC is fixed to use en-US (v0.5)
++ Enhanced indicator texts
++ Improved the timeout issue with :
+	- "Retry" options
+	- Placeholder in case all else have failed
++ changed to "relative" "Downloads" folder (not hard-coding/ Absolute address) (v0.6)
++ changed to dynamic threshold (period: 5s) (v0.7)
 2023-11-18: (v0.9)
-	+ created Firefox Profile for downloading and using English 
++ created Firefox Profile for downloading and using English 
 2023-11-19: (v0.10)
-	+ Fixed false positive 
++ Fixed false positive 
 ========== v1.0 ==========
 2023-11-30:
-	+ changing to use a temp folder for downloading, to remove the need accessing and pre-cleaning of local Downloads folder
-	- split changelog and readme
++ changing to use a temp folder for downloading, to remove the need accessing and pre-cleaning of local Downloads folder
++ split changelog and readme
