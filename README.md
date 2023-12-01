@@ -1,6 +1,6 @@
 <h1>Seeker</h1>
 <h2>Description</h2>
-<p>This is the repo of automation of GovCERT Security Alert Collector. This project is fully python, without the need of other extra software such as chromedriver.</p>
+<p>This is the repo of automation of GovCERT Security Alert Collector. <br>This project is written in python, without the need of other extra software such as chromedriver.</p>
 <h2>Why this project?</h2>
 <ul>
   <li>to simplify work and minimize error by human factor</li>
@@ -41,13 +41,16 @@ python main.py
 
 <p>Link format: https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 
+<h1>v2.0</h1>
+<p>To comply with migration from cve.mitre.org to cve.org, A new version will be purposed.</p>
+---
 <h2>Future:</h2>
 <p>I will update the system should there be any impactful changes.</p>
 
 <h2>Note:</h2>
 <p>For those who:</p>
 <ul>
-  <li>do not want to tackle the hassle of installation, configuration, blah blah blah...</li>
+  <li>do not want to tackle the hassle of installation, configuration, etc...</li>
   <li>cannot install python and modules due to security</li>
 </ul>
 <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.</p>
