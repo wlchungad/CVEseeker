@@ -1,7 +1,6 @@
 <h1>Seeker</h1>
 <h2>Description</h2>
-<p>This is the repo of automation of GovCERT Security Alert Collector</p>
-
+<p>This is the repo of automation of GovCERT Security Alert Collector. This project is fully python, without the need of other extra software such as chromedriver.</p>
 <h2>Why this project?</h2>
 <ul>
   <li>to simplify work and minimize error by human factor</li>
