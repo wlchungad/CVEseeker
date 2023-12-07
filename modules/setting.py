@@ -17,3 +17,21 @@ def init():
     alertType = None
     global downloadFolder
     downloadFolder = ""
+    global uselessSet # global variable to indicate set of non-applicable vulnerabilities
+    uselessSet = {"Apple iOS and iPadOS",
+                  "Android",
+                  "Firefox",
+                  "QNAP Products",
+                  "Drupal",
+                  "SonicWall", 
+                  "Intel Products", 
+                  "Fortinet Products", 
+                  "Cisco Products", 
+                  "Adobe Reader/Acrobat",
+                  "Google Chrome"}
+    global lastCVE
+    # prepare the output.csv
+    with open('output.csv', 'w+', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Security Alert Number',' ','Related to ERKS system?','CVE-ID', 'Required?', 'Justification'])
+        #csvfile.close()
