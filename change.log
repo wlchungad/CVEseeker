@@ -48,3 +48,8 @@
 2023-11-30:
 + changing to use a temp folder for downloading, to remove the need accessing and pre-cleaning of local Downloads folder
 + split changelog and readme
+2023-12-06:
++ updated so that user can download and copy without re-opening the app a lot of times
+2023-12-07:
++ further updated the algorithm to combine multiple parts of result as onefile
++ fix bug of extra rows in between each record
