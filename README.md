@@ -29,9 +29,8 @@ pip install -r requirements.txt
 
 <h2>How to use:</h2>
 <ol>
-  <li>call the python with anaconda / python console</li>
-  <li>run the python file</li>
-</ol> 
+  <li>Start python with anaconda / python console</li>
+  <li>Run the python file</li>
 <h3>CMD:</h3>
 
 ```console
@@ -39,11 +38,15 @@ cd /d <path/to/folder>
 python main.py
 ```
 
+  <li>Input the link, and let python do the job for you</li>
+</ol> 
 <p>Link format: https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 
 <h1>v2.0</h1>
 <p>To comply with migration from cve.mitre.org to cve.org, A new version will be purposed.</p>
+
 ---
+
 <h2>Future:</h2>
 <p>I will update the system should there be any impactful changes.</p>
 
@@ -53,4 +56,4 @@ python main.py
   <li>do not want to tackle the hassle of installation, configuration, etc...</li>
   <li>cannot install python and modules due to security</li>
 </ul>
-<p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.</p>
+<p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.<br>Please note that the update time of APP branch might be delayed. </p>
