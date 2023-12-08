@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from . import FirefoxProfile as FP
+from . import setting
 import csv
 import time
 import re
@@ -27,7 +28,21 @@ def download_problems(importList, type = None):
     with open("Title.txt", "r") as txt_file:
         for line in txt_file.readlines():
             alertInfo.append(line.replace('\n', ''))
-    if temp != []:
+    if any(item in alertInfo[1] for item in setting.uselessSet) : 
+        print(" - not usable for us")
+        Code = setting.lastCVE
+        MsgUnrelated = "N/A, only related to "
+        if "Multiple Vulnerabilities in " in alertInfo[1]:
+            MsgUnrelated += str(alertInfo[1].replace("Multiple Vulnerabilities in ",""))
+        elif "Vulnerability in " in alertInfo[1]:
+            MsgUnrelated += str(alertInfo[1].replace("Vulnerability in ",""))
+        with open('output.csv', 'a', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            # writer.writerow(['Security Alert Number',' ','Related to ERKS system?','CVE-ID', 'Required?', 'Justification'])
+            writer.writerow([alertInfo[0],alertInfo[1],'No',Code,'No',MsgUnrelated.strip()])
+            #csvfile.close()
+        return
+    elif temp != []:
         driver = FP.FFdriver()
         with open('output.csv', 'w+', newline='') as csvfile:
             writer = csv.writer(csvfile)
@@ -60,6 +75,7 @@ def download_problems(importList, type = None):
                 else:
                     writer.writerow(['','','',Code,'Yes',Context])
         driver.quit()
+    return
     
 if __name__=="__main__": 
     print("Downloader Called")                

@@ -2,6 +2,7 @@
 
 # custom library
 from modules import LinkProcessor
+
 # from modules import CVEDownloader
 from modules import CVEDownloader2 as CVEDownloader
 from modules import PatchListProcessor
@@ -14,8 +15,10 @@ allowedNo = {"No", "no", "n", "N"}
 
 from datetime import datetime
 import fnmatch, os, re
+
 # import validators
 from urllib.parse import urlparse, urlsplit
+
 
 def getLink(hintMsg):
     while True:
@@ -24,10 +27,10 @@ def getLink(hintMsg):
         except ValueError:
             print("Sorry, I don't understand that.")
             continue
-        if not re.search("www.govcert.gov.hk", value): # not following the format
-            print ("The link does not follows the format.")
-            print ("Example link:") 
-            print ("https://www.govcert.gov.hk/en/alerts_detail.php?id=1154")
+        if not re.search("www.govcert.gov.hk", value):  # not following the format
+            print("The link does not follows the format.")
+            print("Example link:")
+            print("https://www.govcert.gov.hk/en/alerts_detail.php?id=1154")
             continue
         else:
             parsed_url = urlparse(value)
@@ -38,12 +41,13 @@ def getLink(hintMsg):
                 print("Invalid URL!")
                 continue
             # if not validators.url(value):
-                # print ("The link did not pass validation.")
-                # continue
-            # else: 
-                # print("The link passed checking.")
-                # break
+            # print ("The link did not pass validation.")
+            # continue
+            # else:
+            # print("The link passed checking.")
+            # break
     return value
+
 
 def main():
     # Step 0: Initialize global variable
@@ -53,7 +57,7 @@ def main():
     while exited == False:
         while True:
             answer = input("Do you need the service? [Y/N]")
-            if answer in allowedNo:
+            if answer in allowedNo or answer == "exit":
                 ClearFile.ClearTemp()
                 print("Files are moved and deleted.")
                 print("==================END===================")
@@ -73,7 +77,9 @@ def main():
                     # Step 2.1: get raw file
                     MSRC.downloadFile()
                     # Step 2.1: process file
-                    PatchListProcessor.process_patchlist(MSRC.patchName, setting.ProductList)
+                    PatchListProcessor.process_patchlist(
+                        MSRC.patchName, setting.ProductList
+                    )
                 else:
                     print(" - No need to download MSRC files.")
                     pass
@@ -85,6 +91,8 @@ def main():
             else:
                 print("Invalid input")
                 continue
-    return 
-if __name__=="__main__": 
+    return
+
+
+if __name__ == "__main__":
     main()
