@@ -44,15 +44,21 @@ python main.py
 <p>https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 
 <h1>v2.0</h1>
-<p>To comply with migration from cve.mitre.org to cve.org, A new version is made. <br>
+<p>To comply with migration from cve.mitre.org to cve.org, a new version is made. <br>
 You can refer to CVEDownloader2.py for updates.</p>
 
 <h1>Note:</h1>
-<p>1. I will update the system should there be any impactful changes.</p>
-<p>2. For those who:
-  <ul>
-    <li>do not want to tackle the hassle of installation, configuration, etc...</li>
-    <li>cannot install python and modules due to security</li>
-  </ul>
-  <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.<br>Please note that the update time of APP branch might be delayed. </p>
-</p>
+<ol>
+  <li>
+    <p>I will update the system should there be any impactful changes.</p>
+  </li>
+  <li>
+    <p>For those who:
+      <ul>
+        <li>do not want to tackle the hassle of installation, configuration, etc...</li>
+        <li>cannot install python and modules due to security</li>
+      </ul>
+      <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.<br>Please note that the update time of APP branch might be delayed. </p>
+    </p>
+  </li>
+</ol>
