@@ -30,11 +30,11 @@ pip install -r requirements.txt
 <h2>How to use:</h2>
 <ol>
   <li>Start python with anaconda / python console</li>
-  <li>Run the python file</li>
+  <li>Run the python file in CMD</li>
 <h3>CMD:</h3>
 
 ```console
-cd /d <path/to/folder>
+cd /d "<path/to/folder>"
 python main.py
 ```
 

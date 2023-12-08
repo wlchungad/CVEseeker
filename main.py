@@ -1,22 +1,20 @@
-# pip install xlrd
-
 # custom library
 from modules import LinkProcessor
-
-# from modules import CVEDownloader
 from modules import CVEDownloader2 as CVEDownloader
 from modules import PatchListProcessor
 from modules import ClearFile
 from modules import setting
 from modules import MSRC
 
+# from modules import CVEDownloader
+
 allowedYes = {"Yes", "yes", "Y", "y"}
 allowedNo = {"No", "no", "n", "N"}
 
+# official / python built-in modules
+# import validators
 from datetime import datetime
 import fnmatch, os, re
-
-# import validators
 from urllib.parse import urlparse, urlsplit
 
 
