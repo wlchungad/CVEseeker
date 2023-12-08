@@ -45,7 +45,7 @@ python main.py
 
 <h1>v2.0</h1>
 <p>To comply with migration from cve.mitre.org to cve.org, a new version is made. <br>
-You can refer to CVEDownloader2.py for updates.</p>
+You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.py</a> for updates.</p>
 
 <h1>Note:</h1>
 <ol>
