@@ -9,9 +9,8 @@ from modules import MSRC
 allowedYes = {"Yes", "yes", "Y", "y"}
 allowedNo = {"No", "no", "n", "N"}
 
-from datetime import datetime
-import fnmatch, os, re
-from urllib.parse import urlparse, urlsplit
+import re
+from urllib.parse import urlparse
 
 
 def getLink(hintMsg):
@@ -72,7 +71,6 @@ def main():
                 # Step 3: Download the Justification for each Known CVE
                 print("Copying CVEs and their info...")
                 CVEDownloader.download_problems(setting.ProductList, setting.alertType)
-
                 continue
             else:
                 print("Invalid input")
