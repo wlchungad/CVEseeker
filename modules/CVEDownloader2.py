@@ -1,7 +1,7 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
-from . import FirefoxProfile as FP
+from selenium.common.exceptions import NoSuchElementException
+#from . import FirefoxProfile as FP
+from . import ChromeProfile as CP
 from . import setting
 import csv
 import time
@@ -43,7 +43,7 @@ def download_problems(importList, type = None):
         return
     # let's be conservative and assume all other vulnerabilities are related
     elif temp != []:
-        driver = FP.FFdriver()
+        driver = CP.GCDriver()
         # to append each big item and sub-item to csv
         with open('output.csv', 'a', newline='') as csvfile:
             writer = csv.writer(csvfile)

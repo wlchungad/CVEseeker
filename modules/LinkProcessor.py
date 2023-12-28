@@ -1,14 +1,14 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from modules import setting
-from . import FirefoxProfile as FP
+#from . import FirefoxProfile as FP
+from . import ChromeProfile as CP
 import csv
 import time
 import re
 
 def process_GOV_Link(weblink):
     CVE_List = []
-    driver = FP.FFdriver()
+    driver = CP.GCDriver()
     driver.get(weblink) 
     # get title 
     pageTitle = driver.find_element(By.XPATH, "//h3[@id='doc_title']").text

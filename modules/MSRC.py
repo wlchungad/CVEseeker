@@ -1,8 +1,7 @@
-from . import FirefoxProfile as FP
+#from . import FirefoxProfile as FP
+from . import ChromeProfile as CP
 from . import setting
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
 import time, os, shutil, fnmatch
@@ -10,7 +9,7 @@ from pathlib import Path
 
 def downloadFile():
     # call pre-defined driver (see FirefoxProfile)
-    driver = FP.FFdriver()
+    driver = CP.GCDriver()
     driver.get("https://msrc.microsoft.com/update-guide/")
     time.sleep(5)    
     try: # auto select and download
