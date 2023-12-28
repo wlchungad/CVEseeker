@@ -8,6 +8,8 @@ import os
 
 def FFdriver(download_dir=None):
     option = Options()
+    option.add_argument("--headless")
+    option.set_preference("headless",True)
     option.set_preference('intl.accept_languages', 'en-GB, en-US, en')
     option.set_preference("browser.download.folderList", 2)
     option.set_preference("browser.helperApps.alwaysAsk.force", False)

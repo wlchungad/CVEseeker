@@ -1,17 +1,18 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from modules import setting
+from . import FirefoxProfile as FP
 import csv
 import time
 import re
 
 def process_GOV_Link(weblink):
     CVE_List = []
-    driver = webdriver.Firefox()
+    driver = FP.FFdriver()
     driver.get(weblink) 
     # get title 
     pageTitle = driver.find_element(By.XPATH, "//h3[@id='doc_title']").text
-    pageTitle = pageTitle.replace("):", "(").split("(",1)
+    pageTitle = pageTitle.replace("):", "(").split("(",2)
     del pageTitle[0]
     with open("Title.txt", "w+") as txtFile:
         for each in pageTitle:

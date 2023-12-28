@@ -1,6 +1,6 @@
 <h1>Seeker</h1>
 <h2>Description</h2>
-<p>This is the repo of automation of GovCERT Security Alert Collector. <br>This project is written in python, which means it can be executed without the need of other extra software such as chromedriver.</p>
+<p>This is the repo of automation of GovCERT Security Alert Collector. <br>This project is written in python, which means it should be executed without the need of other extra software such as chromedriver.</p>
 <h2>Why this project?</h2>
 <ul>
   <li>to simplify work and minimize error by human factor</li>
@@ -42,15 +42,23 @@ python main.py
 </ol>
 <h4>Link format:</h4> 
 <p>https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
+<h3>Happy <s>crawling</s> scrapping!</h3>
+
+<h1>v1.0</h1>
+<p>The first build is just a self-challenge and a "support tool" for work.</p>
 
 <h1>v2.0</h1>
 <p>To comply with migration from cve.mitre.org to cve.org, a new version is made. <br>
 You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.py</a> for updates.</p>
 
+
+<h1>v2.1 (<i>"headless"</i>)</h1>
+<p>With FirefoxProfile updated, now the service can scrap sliently without the big Firefox window.</p>
+
 <h1>Note:</h1>
 <ol>
   <li>
-    <p>I will update the system should there be any impactful changes.</p>
+    <p>I will update the system should there be any impactful changes in source websites.</p>
   </li>
   <li>
     <p>For those who:
@@ -62,3 +70,10 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
     </p>
   </li>
 </ol>
+
+<h1>Acknowledgments:</h1>
+<ul>
+  <li>
+    Geckodriver: <a>https://github.com/mozilla/geckodriver/releases/tag/v0.33.0</a>
+  </li>
+</ul>
