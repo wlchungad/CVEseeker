@@ -14,15 +14,10 @@
     <p>Install Python 3 (3.9+ recommended) and pip</p>
   </li>
   <li>
+    <p>Install browser (Firefox/Chrome)</p>
+  </li>
+  <li>
     <p>Install the required modules:</p>
-    <!-- module and usage 
-    <ul>
-      <li>selenium</li>
-      <li>openpyxl</li>
-      <li>validators</li>
-      <li>tqdm</li>
-    </ul>
-    -->
     <table>
       <tr>
         <th>Module used</th>
@@ -77,7 +72,7 @@ python main.py
 You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.py</a> for updates.</p>
 
 
-<h1>v2.1 (<i>"headless"</i>)</h1>
+<h3>v2.1 (<i>"headless"</i>)</h3>
 <p>With FirefoxProfile updated, now the service can scrap sliently without the big Firefox window.</p>
 
 <h1>Note:</h1>
@@ -91,7 +86,7 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
         <li>do not want to tackle the hassle of installation, configuration, etc...</li>
         <li>cannot install python and modules due to security</li>
       </ul>
-      <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.<br><b>Please note that the APP branch might be delayed.</b> </p>
+      <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code is as same as main branch (here). <b>Please note that the APP branch might be delayed.</b> </p>
     </p>
   </li>
 </ol>
