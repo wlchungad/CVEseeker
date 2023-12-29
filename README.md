@@ -15,10 +15,12 @@
   </li>
   <li>
     <p>Install the required modules:</p>
+    <!-- module and usage -->
     <ul>
       <li>selenium</li>
       <li>openpyxl</li>
       <li>validators</li>
+      <li>tqdm</li>
     </ul>   
   </li>
 </ol>

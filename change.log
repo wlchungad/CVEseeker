@@ -55,3 +55,6 @@
 + fix bug of extra rows in between each record
 2023-12-13:
 + edited comments to avoid disturbance
+2023-12-29:
++ add support for Google Chrome (see chromeDriver branch)
++ add progress bar to confirm if CVEs are copied accordingly

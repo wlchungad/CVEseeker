@@ -4,7 +4,7 @@ from . import FirefoxProfile as FP
 from . import setting
 import csv
 import time
-import re
+# import re
 from tqdm import tqdm
 
 # to patch against change in CVE official website and format changes
@@ -20,7 +20,6 @@ def download_problems(importList, type = None):
     with open("CVE List.txt", "r") as txt_file:
         for line in txt_file.readlines():
             count += 1
-            # print("Line{}: {}".format(count, line.strip()))
             if type == "MS":
                 temp.append(MSRC_Initial +str(line.strip()))
             else: 
@@ -47,10 +46,9 @@ def download_problems(importList, type = None):
         driver = FP.FFdriver()
         # to append each big item and sub-item to csv
         with open('output.csv', 'a', newline='') as csvfile:
-            writer = csv.writer(csvfile)
-            # writer.writerow(['Security Alert Number',' ','Related to ERKS system?','CVE-ID', 'Required?', 'Justification'])
+            writer = csv.writer(csvfile) # header is generated in setting, we just append to that csv file
             isFirstRow = True
-            for each in tqdm(temp, desc="Progress: "):
+            for each in tqdm(temp, desc="Progress: "): # progress bar added
                 driver.get(each)
                 time.sleep(5)
                 if type == "MS": # Better consult official information first, IF they are available
@@ -71,7 +69,7 @@ def download_problems(importList, type = None):
                     Context = str(driver.find_element(By.XPATH, "//div[@id='cve-desciption']/p").text).strip()
                     if "Chromium security severity" in Context: # Edge specific, else continue
                         Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
-                if isFirstRow:
+                if isFirstRow: # for first row, it's better to mark down how the CVEs are called officially
                     writer.writerow([alertInfo[0],alertInfo[1],'Yes',Code,'Yes',Context])
                     isFirstRow = False
                 else:

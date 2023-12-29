@@ -54,7 +54,7 @@ def downloadFile():
     except: # if selenium fails (again)...
         print ("Selenium cannot click, please download manually to continue...(Timeout: {}s)".format(60))
         time.sleep(60)
-    driver.quit() # close driver to free resources
+    driver.close() # close driver to free resources
     
     # after output: rename file
     startDate = str(datetime.now().year) + "-" + str(datetime.now().month) + "-01"

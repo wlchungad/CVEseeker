@@ -1,7 +1,6 @@
 # custom library
 from modules import LinkProcessor
-#from modules import CVEDownloader2 as CVEDownloader
-from modules import CVEDownloader3 as CVEDownloader
+from modules import CVEDownloader2 as CVEDownloader
 from modules import PatchListProcessor
 from modules import ClearFile
 from modules import setting
