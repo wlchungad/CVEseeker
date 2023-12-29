@@ -15,13 +15,36 @@
   </li>
   <li>
     <p>Install the required modules:</p>
-    <!-- module and usage -->
+    <!-- module and usage 
     <ul>
       <li>selenium</li>
       <li>openpyxl</li>
       <li>validators</li>
       <li>tqdm</li>
-    </ul>   
+    </ul>
+    -->
+    <table>
+      <tr>
+        <th>Module used</th>
+        <th>Usage</th>
+      </tr>
+      <tr>
+        <td>selenium</td>
+        <td>scrapping websites</td>
+      </tr>
+      <tr>
+        <td>openpyxl</td>
+        <td>handling excel and csv files</td>
+      </tr>
+      <tr>
+        <td>validators</td>
+        <td>validating if URL is reachable</td>
+      </tr>
+      <tr>
+        <td>tqdm</td>
+        <td>showing progress bar</td>
+      </tr>
+    </table>   
   </li>
 </ol>
 
@@ -68,7 +91,7 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
         <li>do not want to tackle the hassle of installation, configuration, etc...</li>
         <li>cannot install python and modules due to security</li>
       </ul>
-      <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.<br>Please note that the update time of APP branch might be delayed. </p>
+      <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code are, will be, and should be the same.<br><b>Please note that the APP branch might be delayed.</b> </p>
     </p>
   </li>
 </ol>
