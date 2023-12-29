@@ -1,9 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+#from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-from selenium.common.exceptions import NoSuchElementException
+#from selenium.common.exceptions import NoSuchElementException
 from . import setting
-
 import os
 
 def FFdriver(download_dir=None):

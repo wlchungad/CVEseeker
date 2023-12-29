@@ -2,9 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from modules import setting
 from . import FirefoxProfile as FP
-import csv
-import time
-import re
+#import csv
+#import time
+#import re
 
 def process_GOV_Link(weblink):
     CVE_List = []

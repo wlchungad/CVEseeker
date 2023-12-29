@@ -1,7 +1,7 @@
-import openpyxl
+#import openpyxl
 from openpyxl.styles import PatternFill
 from openpyxl import Workbook, load_workbook
-import shutil
+#import shutil
 from datetime import datetime
 import os
 # Function specifically for MSRC CVE table - To filter with colors

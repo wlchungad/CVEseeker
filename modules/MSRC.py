@@ -1,12 +1,12 @@
 from . import FirefoxProfile as FP
 from . import setting
-from selenium import webdriver
+#from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
 import time, os, shutil, fnmatch
-from pathlib import Path
+#from pathlib import Path
 
 def downloadFile():
     # call pre-defined driver (see FirefoxProfile)

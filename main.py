@@ -38,7 +38,6 @@ def getLink(hintMsg):
 
 def run(linkProcessedCount):
     # Step 1: Get the list of CVE and expand for Excel (i.e. CVE-2023-xxxx to xxxx)
-    print("****************************************")
     print(f"Link count: {linkProcessedCount}")
     print("****************************************")
     setting.alertType == ""
