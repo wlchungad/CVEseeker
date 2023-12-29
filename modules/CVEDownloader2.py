@@ -1,15 +1,16 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
+from selenium.common.exceptions import NoSuchElementException
 from . import FirefoxProfile as FP
 from . import setting
 import csv
 import time
 import re
+from tqdm import tqdm
+
 # to patch against change in CVE official website and format changes
 # Example Link: https://www.cve.org/CVERecord?id=CVE-2023-6346
 def download_problems(importList, type = None):
-    ProductList = importList
+    # ProductList = importList
     temp = []
     alertInfo = []
     count = 0
@@ -49,7 +50,7 @@ def download_problems(importList, type = None):
             writer = csv.writer(csvfile)
             # writer.writerow(['Security Alert Number',' ','Related to ERKS system?','CVE-ID', 'Required?', 'Justification'])
             isFirstRow = True
-            for each in temp:
+            for each in tqdm(temp, desc="Progress: "):
                 driver.get(each)
                 time.sleep(5)
                 if type == "MS": # Better consult official information first, IF they are available
@@ -75,7 +76,7 @@ def download_problems(importList, type = None):
                     isFirstRow = False
                 else:
                     writer.writerow(['','','',Code,'Yes',Context])
-        driver.quit()
+        driver.close()
     return
     
 if __name__=="__main__": 
