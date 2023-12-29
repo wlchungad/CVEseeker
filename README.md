@@ -1,12 +1,6 @@
 <h1>Seeker - Automation of GovCERT Security Alert Collector</h1>
-
-<h2>Why this project?</h2>
-<ul>
-  <li>to simplify the extraction of security notes</li>
-  <li>to minimize error by human factor</li>
-  <li>to free manpower from repetitive checking</li>
-  <li>to train the ability of multi-module python development</li>
-</ul> 
+<h2>Introduction</h2>
+This is the repository for the "Seeker" project, executable edition.
 
 <h2>Prerequisites:</h2>
 <p>The following modules will be used:</p>
@@ -14,11 +8,13 @@
   <li>selenium</li>
   <li>openpyxl</li>
   <li>validators</li>
+  <li>tqdm</li>
 </ul> 
 <p>You can refer to <u>requirements.txt</u>, but you need not install modules with command.</p>
 
 <h2>How to use:</h2>
 <ol>
+  <li><p>Download from "Current Version"</p></li>
   <li>
     <p>Double-click and run the executive file.</p>
   </li>
@@ -30,6 +26,12 @@
     <p>Go to output folder and get your result!</p>
   </li>
 </ol>
+
+<h2>Update</h2>
+<ul>
+  <li>v1.1: Basic functionality in Firefox</li>
+  <li>v2.1: Update from <u>origin/main</u>, now it is headless and using Chrome</li>
+</ul>
 
 <h2>Note:</h2>
 <p>NIL</p>
