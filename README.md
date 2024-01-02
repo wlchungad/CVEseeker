@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <td>selenium</td>
-        <td>scrapping websites</td>
+        <td>scrapping dynamic websites that requires interaction<br><i>e.g. Microsoft Update Catalog</i></td>
       </tr>
       <tr>
         <td>openpyxl</td>
@@ -38,6 +38,14 @@
       <tr>
         <td>tqdm</td>
         <td>showing progress bar</td>
+      </tr>
+      <tr>
+        <td>request</td>
+        <td>getting static HTML content</td>
+      </tr>
+      <tr>
+        <td>BeautifulSoup</td>
+        <td>extracting information from webpage</td>
       </tr>
     </table>   
   </li>
@@ -74,6 +82,10 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
 
 <h3>v2.1 (<i>"headless"</i>)</h3>
 <p>With FirefoxProfile updated, now the service can scrap sliently without the big Firefox window.</p>
+
+<h1>v3.0?</h1>
+<p>BeautifulSoup is better for static scrapping. However selenium is needed for interactive downloads and "reading".
+I may sync this version to main-branch.</p>
 
 <h1>Note:</h1>
 <ol>

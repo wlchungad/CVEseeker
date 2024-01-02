@@ -2,3 +2,5 @@ selenium
 openpyxl
 validators
 tqdm
+bs4
+requests
