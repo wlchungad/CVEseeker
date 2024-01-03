@@ -58,3 +58,6 @@
 2023-12-29:
 + add support for Google Chrome (see chromeDriver branch)
 + add progress bar to confirm if CVEs are copied accordingly
+2024-01-03:
++ changed to BeautifulSoup and request for CVE downloading (using old website)
+- will investighate how to access javascript-enabled features
