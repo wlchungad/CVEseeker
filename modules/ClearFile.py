@@ -6,10 +6,7 @@ from . import setting
 def ClearTemp():
     fileList = ["CVE List.txt", "output.csv", "Title.txt"]
     fileOut = str("Processed_Patch_List_{}.xlsx".format(datetime.now().date()))
-    if setting.alertType == "MS": # special case: MSRC (only delete if MS is triggered)
-        fileList.append(fileOut)
-    else:
-        print("Note: {} is not downloaded.".format(fileOut))
+    fileList.append(fileOut)
     folderPath = './output/' + str(datetime.now().date())
     # move and delete
     if not os.path.exists(folderPath): # create output sotrage folder

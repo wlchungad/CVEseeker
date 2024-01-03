@@ -48,3 +48,8 @@ def init():
         # Again, the format is personal, but you can can always change that
         writer.writerow(['Security Alert Number',' ','Related to ERKS system?','CVE-ID', 'Required?', 'Justification']) 
         #csvfile.close()
+def reset():
+    global lastCVE
+    lastCVE = ""
+    global alertType
+    alertType = ""

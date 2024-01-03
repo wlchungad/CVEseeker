@@ -58,3 +58,5 @@
 2023-12-29:
 + add support for Google Chrome (see chromeDriver branch)
 + add progress bar to confirm if CVEs are copied accordingly
+2024-01-03:
++ patched bugs and added some kind of fallback 
