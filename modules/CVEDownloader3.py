@@ -6,8 +6,7 @@ from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
 
-# to patch against change in CVE official website and format changes
-# Example Link: https://www.cve.org/CVERecord?id=CVE-2023-6346
+# omprove performance by calling bs4 instead of pure selenium
 def download_problems(importList, type = None):
     # ProductList = importList
     temp = []
