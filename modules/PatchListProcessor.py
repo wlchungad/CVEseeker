@@ -14,10 +14,8 @@ def process_patchlist(filename, importList):
         # read the CVE List generated previously
         CVEList = []
         with open("CVE List.txt", "r") as txt_file:
-            lines = [line.strip() for line in txt_file]
-            for _ in lines:
-                CVEList.append(_)
-                
+            CVEList.extend([line.strip() for line in txt_file])
+        # read & highlight
         for row in range(2, sheet.max_row + 1): 
             Product = sheet.cell(row, 2).value
             CVE_code = sheet.cell(row, 9).value
