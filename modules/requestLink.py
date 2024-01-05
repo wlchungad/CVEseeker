@@ -1,7 +1,7 @@
 from modules import setting
 import requests
 from bs4 import BeautifulSoup
-
+from datetime import datetime
 
 def process_GOV_Link(weblink):
     CVE_List = []
@@ -20,24 +20,24 @@ def process_GOV_Link(weblink):
 
     # get links
     link_count = 0
-    for item in soup.select("ul>li")[1:]:
-        if "https://cve.mitre.org/" in item.text:
-            # print (item.text)
+    urlList = [i.text for i in soup.find_all("li") if ("https://cve.mitre.org/" in i.text)]
+    for item in urlList:
+        if "https://cve.mitre.org/" in item:
             link_count += 1
-            itemText = str(
-                item.text.replace(
-                    "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-", ""
-                )
-            )
-            if " (to CVE-2023-" in itemText:
-                temp = []
-                temp = itemText.split(" (to CVE-2023-")
-                temp[1] = temp[1].replace(")", "")
-                for _ in range(int(temp[0]), int(temp[1]) + 1):
-                    placeholder = str("CVE-2023-") + str(_)
-                    CVE_List.append(placeholder)
-            else:  # Only one CVE
-                CVE_List.append(str("CVE-2023-") + str(itemText))
+            for year in [str(x) for x in (range(2022, datetime.now().year+1))]:
+                if year in item:
+                    itemText = str(item.replace(f"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-{year}-",""))
+                    # print(itemText)
+                    if " (to CVE-" in itemText:
+                        temp = []
+                        temp = itemText.split(f" (to CVE-{year}-")
+                        temp[1] = temp[1].replace(")","")
+                        for _ in range (int(temp[0]),int(temp[1])+1):
+                            placeholder = str(f"CVE-{year}-")+str(_).zfill(4)
+                            CVE_List.append(placeholder)
+                    else:# Only one CVE
+                        CVE_List.append(str(f"CVE-{year}-")+str(itemText))
+    
     last_CVE = CVE_List[-1]
     setting.lastCVE = last_CVE
     print(
