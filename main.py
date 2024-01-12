@@ -1,17 +1,19 @@
 # custom library
 from modules import requestLink as LinkProcessor
-from modules import CVEDownloader3 as CVEDownloader
+from modules import CVEDownloader5 as CVEDownloader
 from modules import PatchListProcessor
 from modules import ClearFile
 from modules import setting
 from modules import MSRC
-
+from modules import MSCVEloader
 allowedYes = {"Yes", "yes", "Y", "y"}
 allowedNo = {"No", "no", "n", "N"}
+exitSign = {"Exit", "exit", "EXIT"}
+linkProcessedCount = 0
+exited = False
 
 import re
 from urllib.parse import urlparse
-
 
 def getLink(hintMsg):
     while True:
@@ -20,7 +22,9 @@ def getLink(hintMsg):
         except ValueError:
             print("Sorry, I don't understand that.")
             continue
-        if not re.search("www.govcert.gov.hk", value):  # not following the format
+        if value in exitSign:
+            return "kill"
+        elif not re.search("www.govcert.gov.hk", value):  # not following the format
             print("The link does not follows the format.")
             print("Example link:")
             print("https://www.govcert.gov.hk/en/alerts_detail.php?id=1154")
@@ -35,13 +39,23 @@ def getLink(hintMsg):
                 continue
     return value
 
-
 def run(linkProcessedCount):
     # Step 1: Get the list of CVE and expand for Excel (i.e. CVE-2023-xxxx to xxxx)
+    print("****************************************")
     print(f"Link count: {linkProcessedCount}")
     print("****************************************")
     setting.alertType == ""
-    LinkProcessor.process_GOV_Link(getLink("Please enter the link: "))
+    _ = getLink("Please enter the link: ")
+    if _ != "kill":
+        LinkProcessor.process_GOV_Link(_)
+    else: 
+        print("Exiting...")
+        global exited
+        exited = True
+        ClearFile.ClearTemp()
+        print("Files are moved and deleted.")
+        print("==================END===================")
+        return
     print("Getting CVEs from GovCERT...")
     if setting.alertType == "MS":
         print("Downloading MSRC...")
@@ -53,39 +67,25 @@ def run(linkProcessedCount):
     else:
         print(" - No need to download MSRC files.")
         pass
-    # Step 3: Download the Justification for each Known CVE
-    print("Copying CVEs and their info...")
-    CVEDownloader.download_problems(setting.ProductList, setting.alertType)
-    # print("Done, returning...")
+    if setting.alertType == "edge" or setting.alertType == "MS":
+        print("Calling MS API ...")
+        MSCVEloader.download_problems() # Step 2.3: download problems with specific module
+    else:
+        print("Copying CVEs and their info from cve.org ...")
+        CVEDownloader.download_problems() # step 3: download from cve.org
+    print("Done, returning...")
     return
-
 
 def main():
     # Step 0: Initialize global variable
     setting.init()
-    linkProcessedCount = 1
-    exited = False
     print("=================START==================")
     while exited == False:
+        global linkProcessedCount
+        linkProcessedCount += 1
         run(linkProcessedCount)
-        # see if user wants to continue
-        while True:
-            answer = input("Do you still need the service? [Y/N] ")
-            if answer in allowedNo:
-                # Sweep files to output folder
-                ClearFile.ClearTemp()
-                print("Files are moved and deleted.")
-                print("==================END===================")
-                exited = True
-                return
-            elif answer in allowedYes or answer == "":
-                linkProcessedCount += 1
-                break
-            else:
-                print("Invalid input")
-                continue
+        setting.reset()
     return
-
 
 if __name__ == "__main__":
     main()

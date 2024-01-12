@@ -7,17 +7,13 @@ import requests
 from bs4 import BeautifulSoup
 
 # omprove performance by calling bs4 instead of pure selenium
-def download_problems(importList, type = None):
+def download_problems():
     # ProductList = importList
     temp = []
     alertInfo = []
     count = 0
     # For later changes (if cve.org or Microsoft changes again...)
     oldInitial = "https://cve.mitre.org/cgi-bin/cvename.cgi?name="
-    with open("CVE List.txt", "r") as txt_file:
-        for line in txt_file.readlines():
-            count += 1
-            temp.append(oldInitial +str(line.strip()))
     with open("Title.txt", "r") as txt_file:
         for line in txt_file.readlines():
             alertInfo.append(line.replace('\n', ''))
@@ -36,7 +32,11 @@ def download_problems(importList, type = None):
             writer.writerow([alertInfo[0],alertInfo[1],'No',Code,'No',MsgUnrelated.strip()])
         return
     # let's be conservative and assume all other vulnerabilities are related
-    elif temp != []:
+    else:
+        with open("CVE List.txt", "r") as txt_file:
+            for line in txt_file.readlines():
+                count += 1
+                temp.append(oldInitial +str(line.strip()))
         # to append each big item and sub-item to csv
         with open('output.csv', 'a', newline='') as csvfile:
             writer = csv.writer(csvfile) # header is generated in setting, we just append to that csv file

@@ -59,5 +59,7 @@
 + add support for Google Chrome (see chromeDriver branch)
 + add progress bar to confirm if CVEs are copied accordingly
 2024-01-03:
-+ tesing BeautifulSoup and request for CVE downloading (using old website, but faster)
++ testing BeautifulSoup and request for CVE downloading (using old website, but faster)
 - will investighate how to access javascript-enabled features
+2024-01-12:
++ added support to MSRC API support (it can run with less time)
