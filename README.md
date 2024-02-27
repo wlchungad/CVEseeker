@@ -1,4 +1,4 @@
-<h1>Seeker</h1>
+<h1>Seeker - The Automated CVE Reader</h1>
 <h2>Description</h2>
 <p>This is the repo of automation of GovCERT Security Alert Collector. <br>This project is written in python, which means it should be executed without the need of other extra software such as chromedriver.</p>
 <h2>Why this project?</h2>
@@ -84,8 +84,9 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
 <p>With FirefoxProfile updated, now the service can scrap sliently without the big Firefox window.</p>
 
 <h1>v3.0?</h1>
-<p>BeautifulSoup is better for static scrapping. However selenium is needed for interactive downloads and "reading".
+<p>BeautifulSoup is better for static scrapping. However selenium is still needed for interactive downloads and "reading".
 I may sync this version to main-branch.</p>
+
 
 <h1>Note:</h1>
 <ol>
@@ -96,10 +97,20 @@ I may sync this version to main-branch.</p>
     <p>For those who:
       <ul>
         <li>do not want to tackle the hassle of installation, configuration, etc...</li>
-        <li>cannot install python and modules due to security</li>
+        <li>cannot install python and modules due to security/network limitation</li>
       </ul>
       <p>Please go to the <a href="https://github.com/wlchungad/CVEseeker/tree/APP-development">APP</a> version. The source code is as same as main branch (here). <b>Please note that the APP branch might be delayed.</b> </p>
     </p>
+  </li>
+  <li>
+    <p>Using venv is a recommended approach. You can copy this code and make a <code>start.bat</code>.</p>
+
+```
+python -m venv env
+call "env/Scripts/activate.bat"
+pip install -r requirements.txt
+python main.py
+```
   </li>
 </ol>
 
