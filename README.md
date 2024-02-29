@@ -5,13 +5,14 @@
 <ul>
   <li>to simplify work and minimize error by human factor</li>
   <li>to free manpower from repetitive checking</li>
-  <li>to train myself with multi-module python development</li>
+  <li>to experiment with multi-module python development</li>
 </ul>
+<p>Other than "train myself", the background of the project is quite unique (usage-specific and region-specific), meaning that I cannot just <code>git clone</code> some projects and call it a day.</p>
 
 <h2>Prerequisites:</h2>
 <ol>
   <li>
-    <p>Install Python 3 (3.9+ recommended) and pip</p>
+    <p>Install Python 3 (3.10+ recommended) and pip</p>
   </li>
   <li>
     <p>Install browser (Firefox/Chrome)</p>
@@ -32,8 +33,8 @@
         <td>handling excel and csv files</td>
       </tr>
       <tr>
-        <td>validators</td>
-        <td>validating if URL is reachable</td>
+        <td><s>validators</s></td>
+        <td><s>validating if URL is reachable</s></td>
       </tr>
       <tr>
         <td>tqdm</td>
@@ -47,9 +48,14 @@
         <td>BeautifulSoup</td>
         <td>extracting information from webpage</td>
       </tr>
+      <tr>
+        <td>virtualenv</td>
+        <td>(Optional)<br>creating virtual environment</td>
+      </tr>
     </table>   
   </li>
 </ol>
+<p>Module "virtualenv" is <b>not</b> in requirement.txt. You can always <code>pip install</code> if you prefer to do so.</p>
 
 ```
 pip install -r requirements.txt
@@ -68,8 +74,7 @@ python main.py
 
   <li>Input the link, and let python do the job for you</li>
 </ol>
-<h4>Link format:</h4> 
-<p>https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
+<p><b>Link format:</b> https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 <h3>Happy <s>crawling</s> scrapping!</h3>
 
 <h1>v1.0</h1>
@@ -84,9 +89,8 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
 <p>With FirefoxProfile updated, now the service can scrap sliently without the big Firefox window.</p>
 
 <h1>v3.0?</h1>
-<p>BeautifulSoup is better for static scrapping. However selenium is still needed for interactive downloads and "reading".
+<p>BeautifulSoup is better for static scrapping. However selenium is still needed for some major tasks, such as interactive downloads.
 I may sync this version to main-branch.</p>
-
 
 <h1>Note:</h1>
 <ol>
@@ -103,9 +107,9 @@ I may sync this version to main-branch.</p>
     </p>
   </li>
   <li>
-    <p>Using venv is a recommended approach. You can copy this code and make a <code>start.bat</code>.</p>
+    <p>Using venv is a recommended approach. You can copy this code and make a <code>start.bat</code> at wherever you clone this project.</p>
 
-```
+```console
 python -m venv env
 call "env/Scripts/activate.bat"
 pip install -r requirements.txt

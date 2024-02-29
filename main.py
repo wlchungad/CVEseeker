@@ -47,6 +47,7 @@ def run(linkProcessedCount):
     setting.alertType == ""
     _ = getLink("Please enter the link: ")
     if _ != "kill":
+        setting.govcertLink = _
         LinkProcessor.process_GOV_Link(_)
     else: 
         print("Exiting...")

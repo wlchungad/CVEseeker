@@ -38,10 +38,12 @@ def init():
                   "Cisco Products", 
                   "Adobe Reader/Acrobat",
                   "Google Chrome",
-                  "Bluetooth devices"}
+                  "Bluetooth devices",
+                  "VMware"}
     # prepare a last CVE Number in case the item is not applicable
     # i.e. cveList[-1]
     global lastCVE
+    global govcertLink
     # prepare the output.csv
     with open('output.csv', 'w+', newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -53,3 +55,5 @@ def reset():
     lastCVE = ""
     global alertType
     alertType = ""
+    global govcertLink
+    govcertLink = ""
