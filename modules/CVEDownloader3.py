@@ -24,16 +24,19 @@ def download_problems():
         MsgUnrelated = "N/A, only related to "
         if "VMware Products" in alertInfo[1]:
             #get product list of vmware, if VMTools update is needed
-            print ("VMware: Checking...")
+            print ("VMware: re-checking...")
             page = requests.get(setting.govcertLink)
             soup = BeautifulSoup(page.text, "html.parser")
             ProductList =  [x.get_text() for x in soup.find_all("li")[3:]]
             for each in ProductList:
-                if "VMware Tools" in each:
-                    local_flag = True
-                    break
-                if "VMware" in each:
-                    MsgUnrelated += each + ", "
+                match each:
+                    case str(x) if "VMware Tools" in x:
+                        local_flag = True
+                        break
+                    case str(x) if "VMware" in x:
+                        MsgUnrelated += each + ", "
+                    case _:
+                        continue      
             MsgUnrelated = MsgUnrelated.rstrip()[:-1]
         else:
             if "Multiple Vulnerabilities in " in alertInfo[1]:
