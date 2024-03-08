@@ -6,8 +6,8 @@ from modules import ClearFile
 from modules import setting
 from modules import MSRC
 from modules import MSCVEloader
-allowedYes = {"Yes", "yes", "Y", "y"}
-allowedNo = {"No", "no", "n", "N"}
+#allowedYes = {"Yes", "yes", "Y", "y"}
+#allowedNo = {"No", "no", "n", "N"}
 exitSign = {"Exit", "exit", "EXIT"}
 linkProcessedCount = 0
 exited = False

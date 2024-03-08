@@ -1,4 +1,5 @@
 modules/__pycache__
+modules/unused
 output
 build
 dist

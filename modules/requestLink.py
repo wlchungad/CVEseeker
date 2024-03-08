@@ -37,9 +37,8 @@ def process_GOV_Link(weblink):
                             CVE_List.append(placeholder)
                     else:# Only one CVE
                         CVE_List.append(str(f"CVE-{year}-")+str(itemText))
-    last_CVE = CVE_List[-1]
-    setting.lastCVE = last_CVE
-    print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {last_CVE}")
+    setting.lastCVE = urlList[-1].replace(f"https://cve.mitre.org/cgi-bin/cvename.cgi?name=","")
+    print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {CVE_List[-1]}")
     # output module
     with open("CVE List.txt", "w+") as txt_file:
         for line in CVE_List:
