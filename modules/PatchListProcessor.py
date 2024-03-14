@@ -30,7 +30,11 @@ def process_patchlist(filename, importList):
             else: # last priority: unrelated to current batch, not usable/ no need to record
                  sheet.cell(row, 9).fill = PatternFill("solid", start_color="dcdcdc")
             # personal change: replace the word for better reading
-        
+            if (" (Server Core installation)" in Product):
+                sheet.cell(row, 2).value = Product.replace("","")
+            if ("-based Systems" in Product):
+                sheet.cell(row, 2).value = re.sub(r' for .* Systems','',Product)
+
         wb.save(filename)
         # rename to Processed_Patch_List_YYYY-MM-DD
         os.rename(filename, str("Processed_Patch_List_{}.xlsx".format(datetime.now().date())))
