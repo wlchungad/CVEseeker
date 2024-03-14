@@ -1,7 +1,7 @@
 import os
 import shutil
 from datetime import datetime
-from . import setting
+# from . import setting
 
 def ClearTemp():
     fileList = ["CVE List.txt", "output.csv", "Title.txt"]

@@ -1,9 +1,10 @@
 #import openpyxl
 from openpyxl.styles import PatternFill
-from openpyxl import Workbook, load_workbook
+from openpyxl import load_workbook
 #import shutil
 from datetime import datetime
 import os
+import re
 # Function specifically for MSRC CVE table - To filter with colors
 def process_patchlist(filename, importList):
     ProductList = importList # get the "must have" list
@@ -28,6 +29,8 @@ def process_patchlist(filename, importList):
                     sheet.cell(row, 2).fill = PatternFill("solid", start_color="c6efce")
             else: # last priority: unrelated to current batch, not usable/ no need to record
                  sheet.cell(row, 9).fill = PatternFill("solid", start_color="dcdcdc")
+            # personal change: replace the word for better reading
+        
         wb.save(filename)
         # rename to Processed_Patch_List_YYYY-MM-DD
         os.rename(filename, str("Processed_Patch_List_{}.xlsx".format(datetime.now().date())))

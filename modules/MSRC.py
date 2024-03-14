@@ -2,7 +2,7 @@ from . import FirefoxProfile as FP
 from . import setting
 #from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
+# from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
 import time, os, shutil, fnmatch
@@ -67,8 +67,8 @@ def downloadFile():
     driver.close() # close driver to free resources
     
     # after output: rename file
-    month = ("0" + str(datetime.now().month)) if int(datetime.now().month) < 10 else datetime.now().month
-    day = ("0" + str(datetime.now().day)) if int(datetime.now().day) < 10 else datetime.now().day
+    month = ("0" + str(datetime.now().month)) if int(datetime.now().month) < 10 else str(datetime.now().month)
+    day = ("0" + str(datetime.now().day)) if int(datetime.now().day) < 10 else str(datetime.now().day)
     startDate = str(datetime.now().year) + "-" + month + "-" + "01"
     endDate   = str(datetime.now().year) + "-" + month + "-" + day
     filename  = str("Microsoft Patch List ("+ startDate +" to "+ endDate +").xlsx")

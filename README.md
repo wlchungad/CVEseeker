@@ -1,6 +1,6 @@
 <h1>Seeker - The Automated CVE Reader</h1>
 <h2>Description</h2>
-<p>This is the repo of automation of GovCERT Security Alert Collector. <br>This project is written in python, which means it should be executed without the need of other extra software such as chromedriver.</p>
+<p>This is the repo of automation of GovCERT Security Alert Collector. This project is specifically working for <a>www.govcert.com.hk</a> and <a>cve.org</a>.<br>This project is written in python, which means it should be executed without the need of other extra software such as chromedriver.</p>
 <h2>Why this project?</h2>
 <ul>
   <li>to simplify work and minimize error by human factor</li>
@@ -87,6 +87,10 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
 
 <h3>v2.1 (<i>"headless"</i>)</h3>
 <p>With FirefoxProfile updated, now the service can scrap sliently without the big Firefox window.</p>
+
+<h3>v2.2</h3>
+<p>This version works more specifically for personal usage.<br>
+Also, to comply with changes of developing environment, vituralenv is employed.</p>
 
 <h1>v3.0?</h1>
 <p>BeautifulSoup is better for static scrapping. However selenium is still needed for some major tasks, such as interactive downloads.

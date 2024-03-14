@@ -1,8 +1,9 @@
 import csv
-import json
+# import json
 # import re
 from tqdm import tqdm
 import requests
+import time
 
 # we can call API now
 def download_problems():
@@ -33,6 +34,7 @@ def download_problems():
                 isFirstRow = False
             else:
                 writer.writerow(['','','',Code,'Yes',Context])
+            time.sleep(1)
     return
     
 if __name__=="__main__": 
