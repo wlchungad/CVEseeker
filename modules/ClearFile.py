@@ -11,7 +11,7 @@ def ClearTemp():
     # else:
     #     print("Note: {} is not downloaded.".format(fileOut))
     fileList.append(fileOut) # as the last one might not be MSRC-related, now I include the file to avoid missing it 
-    folderPath = './output/' + str(datetime.now().date())
+    folderPath = '.\\output\\' + str(datetime.now().date())
     # move and delete
     if not os.path.exists(folderPath): # create output sotrage folder
         os.makedirs(folderPath)
