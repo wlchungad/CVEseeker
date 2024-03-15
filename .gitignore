@@ -3,5 +3,4 @@ modules/unused
 output
 build
 dist
-start.bat
 env
