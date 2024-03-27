@@ -1,6 +1,6 @@
 <h1>Seeker - The Automated CVE Reader</h1>
 <h2>Description</h2>
-<p>This is the repo of automation of GovCERT Security Alert Collector. This project is specifically working for <a>www.govcert.com.hk</a> and <a>cve.org</a>.<br>This project is written in python, which means it should be executed without the need of other extra software such as chromedriver.</p>
+<p>This is the repo of automation of GovCERT Security Alert Collector. This project is specifically working for <a>www.govcert.com.hk</a> and <a>cve.org</a>.<br>This project is written in python, and I will try to reduce dependency, so that it can be executed without the need of other extra software such as chromedriver.</p>
 <h2>Why this project?</h2>
 <ul>
   <li>to simplify work and minimize error by human factor</li>
@@ -77,10 +77,11 @@ python main.py
 <p><b>Link format:</b> https://www.govcert.gov.hk/en/alerts_detail.php?id=xxxx</p>
 <h3>Happy <s>crawling</s> scrapping!</h3>
 
-<h1>v1.0</h1>
-<p>The first build is just a self-challenge and a "support tool" for work.</p>
+<h2>v1.0</h2>
+<p>The first build is just a self-challenge and works as a "support tool".</p>
 
-<h1>v2.0</h1>
+<h2>v2.x</h2>
+<h3>v2.0</h3>
 <p>To comply with migration from cve.mitre.org to cve.org, a new version is made. <br>
 You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.py</a> for updates.</p>
 
@@ -92,15 +93,17 @@ You can refer to <a href="/blob/main/modules/CVEDownloader2.py">CVEDownloader2.p
 <p>This version works more specifically for personal usage.<br>
 Also, to comply with changes of developing environment, vituralenv is employed.</p>
 
-<h1>v3.0?</h1>
-<p>BeautifulSoup is better for static scrapping. However selenium is still needed for some major tasks, such as interactive downloads.
-I may sync this version to main-branch.</p>
+<h3>v2.3</h3>
+<p>Now it allows customization by changing the <code>conf</code> folder to include/exclude CVEs to be recorded.</p>
 
-<h1>Note:</h1>
+<h3>v2.4</h3>
+<p>Due to the change of URL used by GovLink, requestLink module is update to accommodate this issue.</p>
+
+<h2>v3.0 update?</h2>
+<p>BeautifulSoup is better for static scrapping. However selenium is still needed for some major tasks, such as interactive downloads.</p>
+
+<h2>Note:</h2>
 <ol>
-  <li>
-    <p>I will update the system should there be any impactful changes in source websites.</p>
-  </li>
   <li>
     <p>For those who:
       <ul>
@@ -111,7 +114,7 @@ I may sync this version to main-branch.</p>
     </p>
   </li>
   <li>
-    <p>Using venv is a recommended approach. You can copy this code and make a <code>start.bat</code> at wherever you clone this project.</p>
+    <p>Using venv is a recommended approach. You can download the <code>bat</code> file, or copy the following code and make your <code>start.bat</code> at wherever this project is cloned to.</p>
 
 ```console
 python -m venv env

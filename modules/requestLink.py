@@ -18,14 +18,23 @@ def process_GOV_Link(weblink):
         setting.alertType = "MS"
     # get links
     link_count = 0
+    localFlag = False
     urlList = [i.text for i in soup.find_all("li") if ("https://cve.mitre.org/" in i.text)]
+    if not urlList:
+        localFlag = True
+        urlList = [i.text for i in soup.find_all("li") if ("https://cve.mitre.org/" in i.text)]
+    if not localFlag:
+        prefix = "https://cve.mitre.org/cgi-bin/cvename.cgi?name="
+    else:
+        prefix = "https://msrc.microsoft.com/update-guide/vulnerability/"
     for item in urlList:
-        if "https://cve.mitre.org/" in item:
+        if prefix in item:
             link_count += 1
             for year in [str(x) for x in (range(2022, datetime.now().year+1))]:
+                prefixWithYear = prefix + f"CVE-{year}-"
                 if f"CVE-{year}-" in item:
                     # print(year)
-                    itemText = str(item.replace(f"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-{year}-",""))
+                    itemText = str(item.replace(prefixWithYear,""))
                     # print(itemText)
                     if " (to CVE-" in itemText:
                         temp = []
@@ -37,7 +46,7 @@ def process_GOV_Link(weblink):
                             CVE_List.append(placeholder)
                     else:# Only one CVE
                         CVE_List.append(str(f"CVE-{year}-")+str(itemText))
-    setting.lastCVE = urlList[-1].replace(f"https://cve.mitre.org/cgi-bin/cvename.cgi?name=","")
+    setting.lastCVE = urlList[-1].replace(prefix,"")    
     print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {CVE_List[-1]}")
     # output module
     with open("CVE List.txt", "w+") as txt_file:
