@@ -71,6 +71,7 @@ def run(linkProcessedCount):
     if setting.alertType == "edge" or setting.alertType == "MS":
         print("Calling MS API ...")
         MSCVEloader.download_problems() # Step 2.3: download problems with specific module
+        #CVEDownloader.download_problems() # step 3: download from cve.org
     else:
         print("Copying CVEs and their info from cve.org ...")
         CVEDownloader.download_problems() # step 3: download from cve.org

@@ -5,6 +5,7 @@ import csv
 from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
+import time
 
 # omprove performance by calling bs4 instead of pure selenium
 def download_problems():
@@ -13,7 +14,7 @@ def download_problems():
     alertInfo = []
     count = 0
     # For later changes (if cve.org or Microsoft changes again...)
-    oldInitial = "https://cve.mitre.org/cgi-bin/cvename.cgi?name="
+    oldInitial = "https://cve.circl.lu/api/cve/" # replaced with newer URL (old one to be phased out from 1/1/2024) 
     with open("Title.txt", "r") as txt_file:
         for line in txt_file.readlines():
             alertInfo.append(line.replace("\n", ""))
@@ -66,10 +67,13 @@ def download_problems():
         )  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
-            page = requests.get(each)
-            soup = BeautifulSoup(page.text, "html.parser")
-            Code = soup.find("h2").text.strip()
-            Context = soup.find_all("tr")[9].find("td").text.strip()
+            page = requests.get(each).json()
+            time.sleep(1)
+            # soup = BeautifulSoup(page.text, "html.parser")
+            #Code = soup.find("h2").text.strip()
+            Code = page["id"]
+            #Context = soup.find_all("tr")[9].find("td").text.strip()
+            Context = page["summary"]
             if "Chromium security severity" in Context:  # Edge specific, else continue
                 Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
             if (

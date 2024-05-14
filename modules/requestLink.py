@@ -16,6 +16,8 @@ def process_GOV_Link(weblink):
     # identify if it is MS regular patch list
     if ("Microsoft Products" in pageTitle[1]):
         setting.alertType = "MS"
+    elif ("Microsoft Edge" in pageTitle[1]):
+        setting.alertType = "edge"
     # get links
     link_count = 0
     localFlag = False
