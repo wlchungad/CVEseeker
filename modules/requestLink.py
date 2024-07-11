@@ -18,6 +18,7 @@ def process_GOV_Link(weblink):
         setting.alertType = "MS"
     elif ("Microsoft Edge" in pageTitle[1]):
         setting.alertType = "edge"
+        print(str(soup(text=lambda t: "Microsoft Edge prior to version " in t.text)[0]).replace("Microsoft Edge prior to version ",'Edge Version: '))
     # get links
     link_count = 0
     localFlag = False

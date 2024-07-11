@@ -6,15 +6,15 @@ from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
 import time
-
-# omprove performance by calling bs4 instead of pure selenium
+# improve performance by calling bs4 instead of pure selenium
 def download_problems():
     # ProductList = importList
     temp = []
     alertInfo = []
     count = 0
     # For later changes (if cve.org or Microsoft changes again...)
-    oldInitial = "https://cve.circl.lu/api/cve/" # replaced with newer URL (old one to be phased out from 1/1/2024) 
+    oldInitial = "https://cve.circl.lu/api/cve/" # replaced with newer URL (old one to be phased out from 1/1/2024)
+    # oldInitial = "https://cve.mitre.org/cgi-bin/cvename.cgi?name="
     with open("Title.txt", "r") as txt_file:
         for line in txt_file.readlines():
             alertInfo.append(line.replace("\n", ""))
@@ -60,6 +60,7 @@ def download_problems():
         for line in txt_file.readlines():
             count += 1
             temp.append(oldInitial + str(line.strip()))
+            print (temp)
     # to append each big item and sub-item to csv
     with open("output.csv", "a", newline="") as csvfile:
         writer = csv.writer(
@@ -67,26 +68,30 @@ def download_problems():
         )  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
-            page = requests.get(each).json()
-            time.sleep(1)
-            # soup = BeautifulSoup(page.text, "html.parser")
-            #Code = soup.find("h2").text.strip()
-            Code = page["id"]
-            #Context = soup.find_all("tr")[9].find("td").text.strip()
-            Context = page["summary"]
-            if "Chromium security severity" in Context:  # Edge specific, else continue
-                Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
-            if (
-                isFirstRow
-            ):  # for first row, it's better to mark down how the CVEs are called officially
-                writer.writerow(
-                    [alertInfo[0], alertInfo[1], "Yes", Code, "Yes", Context]
-                )
-                isFirstRow = False
-            else:
-                writer.writerow(["", "", "", Code, "Yes", Context])
+            try:    
+                page = requests.get(each, timeout=10).json()
+                #page = requests.get(each)
+                time.sleep(1)
+                #soup = BeautifulSoup(page.text, "html.parser")
+                #Code = soup.find("h2").text.strip()
+                #Context = soup.find_all("tr")[9].find("td").text.strip()
+                Code = page["id"]
+                Context = page["summary"]
+                if "Chromium security severity" in Context:  # Edge specific, else continue
+                    Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
+                if (
+                    isFirstRow
+                ):  # for first row, it's better to mark down how the CVEs are called officially
+                    writer.writerow(
+                        [alertInfo[0], alertInfo[1], "Yes", Code, "Yes", Context]
+                    )
+                    isFirstRow = False
+                else:
+                    writer.writerow(["", "", "", Code, "Yes", Context])           
+            except (AttributeError, requests.exceptions.RequestException) as e: # NoneType and Timeout means API is unavailable for webscrapping
+                print(e)
+                writer.writerow(["", "", "", Code, "", "Error getting content: API is unavailable"]) 
     return
-
 
 if __name__ == "__main__":
     print("Downloader Called")

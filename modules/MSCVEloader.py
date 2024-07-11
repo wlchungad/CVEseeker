@@ -20,7 +20,7 @@ def download_problems():
         for line in txt_file.readlines():
             count += 1
             temp.append(Initial + line.strip())
-    print(temp)
+    # print(temp)
     # to append each big item and sub-item to csv
     with open("output.csv", "a", newline="") as csvfile:
         writer = csv.writer(
@@ -31,13 +31,13 @@ def download_problems():
             page = requests.get(each).json()
             time.sleep(1)
             Code = page["cveNumber"]
-            tqdm.write(f"{Code}")
+            #tqdm.write(f"{Code}")
             Context = page["cveTitle"]
             if "Chromium security severity" in Context:  # Edge specific, else continue
                 Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
             elif "Chromium: CVE-" in Context:
                 Context = str(Context.replace(f"Chromium: {Code} ", ""))
-            tqdm.write(f"{Context}")
+            #tqdm.write(f"{Context}")
             if (
                 isFirstRow
             ):  # for first row, it's better to mark down how the CVEs are called officially
