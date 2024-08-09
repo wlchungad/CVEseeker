@@ -1,6 +1,7 @@
 # custom library
 from modules import requestLink as LinkProcessor
-from modules import CVEDownloader3 as CVEDownloader
+# from modules import CVEDownloader3 as CVEDownloader
+from modules import AccessByJSON as CVEDownloader
 from modules import PatchListProcessor
 from modules import ClearFile
 from modules import setting
@@ -68,7 +69,7 @@ def run(linkProcessedCount):
     else:
         print(" - No need to download MSRC files.")
         pass
-    if setting.alertType == "edge" or setting.alertType == "MS":
+    if setting.alertType == "edge" or setting.alertType == "MS" or setting.alertType == "windows":
         print("Calling MS API ...")
         MSCVEloader.download_problems() # Step 2.3: download problems with specific module
         #CVEDownloader.download_problems() # step 3: download from cve.org
