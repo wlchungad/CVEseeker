@@ -63,9 +63,7 @@ def run(linkProcessedCount):
         print("Downloading MSRC...")
         # Step 2: highlight related items for easier reading
         MSRC.downloadFile()  # Step 2.1: get raw file
-        PatchListProcessor.process_patchlist(
-            MSRC.patchName, setting.ProductList
-        )  # Step 2.2: process file
+        PatchListProcessor.process_patchlist(MSRC.patchName, setting.ProductList)  # Step 2.2: process file
     else:
         print(" - No need to download MSRC files.")
         pass
