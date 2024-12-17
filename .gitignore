@@ -4,3 +4,7 @@ output
 build
 dist
 env
+temp
+CVE\ List.txt
+output\.csv
+Title\.txt
