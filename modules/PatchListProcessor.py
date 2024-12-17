@@ -1,6 +1,6 @@
 #import openpyxl
 from openpyxl.styles import PatternFill
-from openpyxl import load_workbook
+import openpyxl
 #import shutil
 from datetime import datetime
 import os
@@ -8,8 +8,11 @@ import re
 # Function specifically for MSRC CVE table - To filter with colors
 def process_patchlist(filename, importList):
     ProductList = importList # get the "must have" list
+    if os.path.exists(filename) == False:
+        print (" - File not found, probably due to not downloading successfully.")
+        return
     try:
-        wb = load_workbook(filename) 
+        wb = openpyxl.load_workbook(filename) 
         sheet = wb['Security Updates'] 
 
         # read the CVE List generated previously
