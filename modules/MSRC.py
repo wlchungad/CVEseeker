@@ -56,6 +56,7 @@ def downloadFile():
             try:
                 _ = driver.find_element(By.XPATH,"//span[text()='Download complete!']")
                 print ("Download completed!")
+                time.sleep(5)
                 break
             except:
                 print ("...Waiting for 5 seconds...")
@@ -64,19 +65,20 @@ def downloadFile():
     except: # if selenium fails (again)...
         print ("Selenium cannot click, please download manually to continue...(Timeout: {}s)".format(60))
         time.sleep(60)
-    driver.close() # close driver to free resources
-    
+    # driver.close() # close driver to free resources
+    # print ("Driver closed successfully")
     # after output: rename file
     month = ("0" + str(datetime.now().month)) if int(datetime.now().month) < 10 else str(datetime.now().month)
     day = ("0" + str(datetime.now().day)) if int(datetime.now().day) < 10 else str(datetime.now().day)
     startDate = str(datetime.now().year) + "-" + month + "-" + "01"
     endDate   = str(datetime.now().year) + "-" + month + "-" + day
     filename  = str("Microsoft Patch List ("+ startDate +" to "+ endDate +").xlsx")
-    
+    # print(f"DEBUG: {filename}")
     # output filename for other functions 
     global patchName 
     patchName = filename
     searchField = 'Security Updates {}-{}-{}*.xlsx'.format(datetime.now().year, month, day)
+    # print(f"DEBUG: {searchField}")
     downloadFolder = setting.downloadFolder
     for file in os.listdir(downloadFolder):
         #print("In folder: {}".format(file))
@@ -91,4 +93,5 @@ def downloadFile():
             except OSError: # OSError means no file found -> should be safe
                 print(" - Safe - No old file found.")
                 pass
-            shutil.move(oldPath, newPath)
+            os.rename(oldPath, newPath) # do not use shutil.move, it will cause error
+            print(" - File renamed.")
