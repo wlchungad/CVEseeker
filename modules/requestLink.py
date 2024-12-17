@@ -51,8 +51,13 @@ def process_GOV_Link(weblink):
                             CVE_List.append(placeholder)
                     else:# Only one CVE
                         CVE_List.append(str(f"CVE-{year}-")+str(itemText))
-    setting.lastCVE = urlList[-1].replace(prefix,"")    
-    print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {CVE_List[-1]}")
+    if urlList != []:
+        setting.lastCVE = urlList[-1].replace(prefix,"")
+        print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {CVE_List[-1]}")    
+    else:
+        setting.lastCVE = "ERROR"
+        print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs.\n\
+               However, the last CVE format is abnormal, and it will not be marked on CSV!")
     # output module
     with open("CVE List.txt", "w+") as txt_file:
         for line in CVE_List:
