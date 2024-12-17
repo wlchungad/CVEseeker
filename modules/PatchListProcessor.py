@@ -18,8 +18,13 @@ def process_patchlist(filename, importList):
             CVEList.extend([line.strip() for line in txt_file])
                 # tqdm(temp, desc="Progress: ")
         for row in range(2, sheet.max_row + 1): 
-            Product = sheet.cell(row, 2).value
-            CVE_code = sheet.cell(row, 9).value
+            Product = sheet.cell(row, 2).value.strip()
+            CVE_code = sheet.cell(row, 9).value.strip()
+            # personal change: replace the word for better reading
+            if (" (Server Core installation)" in Product):
+                sheet.cell(row, 2).value = Product.replace(" (Server Core installation)","")
+            if ("-based Systems" in Product):
+                sheet.cell(row, 2).value = re.sub(r' for .* Systems','',Product)
             if (CVE_code in CVEList):
                 if (Product in ProductList) or (("Microsoft .NET Framework" in Product) and (sheet.cell(row, 3).value == "Windows Server 2016")): 
                     # situation 1: The software is in the "must-have" list
@@ -29,11 +34,7 @@ def process_patchlist(filename, importList):
                     sheet.cell(row, 2).fill = PatternFill("solid", start_color="c6efce")
             else: # last priority: unrelated to current batch, not usable/ no need to record
                  sheet.cell(row, 9).fill = PatternFill("solid", start_color="dcdcdc")
-            # personal change: replace the word for better reading
-            if (" (Server Core installation)" in Product):
-                sheet.cell(row, 2).value = Product.replace("","")
-            if ("-based Systems" in Product):
-                sheet.cell(row, 2).value = re.sub(r' for .* Systems','',Product)
+            
 
         wb.save(filename)
         # rename to Processed_Patch_List_YYYY-MM-DD
