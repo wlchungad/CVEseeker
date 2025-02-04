@@ -24,6 +24,7 @@ def init():
     # i.e. cveList[-1]
     global lastCVE
     global govcertLink
+    global edgeVersion
     # prepare the output.csv
     with open('output.csv', 'w+', newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -37,3 +38,5 @@ def reset():
     alertType = ""
     global govcertLink
     govcertLink = ""
+    global edgeVersion
+    edgeVersion = ""

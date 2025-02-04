@@ -4,13 +4,15 @@ import csv
 from tqdm import tqdm
 import requests
 import time
-import sys
+# import sys
+from . import setting
 
 # we can call API now
 def download_problems():
     # ProductList = importList
     temp = []
     alertInfo = []
+    rowContent = []
     count = 0
     Initial = "https://api.msrc.microsoft.com/sug/v2.0/en-US/vulnerability/"
     with open("Title.txt", "r") as txt_file:
@@ -23,9 +25,7 @@ def download_problems():
     # print(temp)
     # to append each big item and sub-item to csv
     with open("output.csv", "a", newline="") as csvfile:
-        writer = csv.writer(
-            csvfile
-        )  # header is generated in setting, we just append to that csv file
+        writer = csv.writer(csvfile)  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
             page = requests.get(each).json()
@@ -38,15 +38,15 @@ def download_problems():
             elif "Chromium: CVE-" in Context:
                 Context = str(Context.replace(f"Chromium: {Code} ", ""))
             #tqdm.write(f"{Context}")
-            if (
-                isFirstRow
-            ):  # for first row, it's better to mark down how the CVEs are called officially
-                writer.writerow(
-                    [alertInfo[0], alertInfo[1], "Yes", Code, "Yes", Context]
-                )
+            if (isFirstRow):  # for first row, it's better to mark down how the CVEs are called officially
+                rowContent = [alertInfo[0], alertInfo[1], "Yes", Code, "Yes", Context]
                 isFirstRow = False
             else:
-                writer.writerow(["", "", "", Code, "Yes", Context])
+                rowContent = ["", "", "", Code, "Yes", Context]
+            if setting.alertType == "edge":
+                rowContent.append(setting.edgeVersion)
+            # print("\n", rowContent, '\n')  # to check rowContent list before writing to csv file
+            writer.writerow(rowContent)
     return
 
 if __name__ == "__main__":
