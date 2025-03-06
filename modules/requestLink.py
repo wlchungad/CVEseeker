@@ -2,6 +2,7 @@ from modules import setting
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import re
 
 def process_GOV_Link(weblink):
     CVE_List = []
@@ -37,15 +38,12 @@ def process_GOV_Link(weblink):
         if prefix in item:
             link_count += 1
             for year in [str(x) for x in (range(2022, datetime.now().year+1))]:
-                prefixWithYear = prefix + f"CVE-{year}-"
                 if f"CVE-{year}-" in item:
-                    # print(year)
-                    itemText = str(item.replace(prefixWithYear,""))
-                    # print(itemText)
+                    itemText = str(item.replace(prefix,""))
+                    itemText = str(re.sub('CVE-202.-','',itemText))
                     if " (to CVE-" in itemText:
                         temp = []
                         temp = itemText.split(f" (to CVE-{year}-")
-                        # print (temp)
                         temp[1] = temp[1].replace(")","")
                         for _ in range (int(temp[0]),int(temp[1])+1):
                             placeholder = str(f"CVE-{year}-")+str(_).zfill(4)
