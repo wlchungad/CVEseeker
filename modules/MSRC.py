@@ -9,6 +9,10 @@ import time, os, shutil, fnmatch
 #from pathlib import Path
 
 def downloadFile():
+    # if there is already the file, no need to re-download or process again, just return
+    if os.path.exists(".\\Processed_Patch_List_{}.xlsx".format(datetime.now().date())) == True:
+        print (" - File already exists, no need to re-download.")
+        return
     # call pre-defined driver (see FirefoxProfile)
     driver = FP.FFdriver()
     driver.get("https://msrc.microsoft.com/update-guide/")

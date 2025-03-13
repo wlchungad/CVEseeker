@@ -8,6 +8,10 @@ import re
 # Function specifically for MSRC CVE table - To filter with colors
 def process_patchlist(filename, importList):
     ProductList = importList # get the "must have" list
+    # if there is already the file, no need to re-download or process again, just return
+    if os.path.exists(".\\Processed_Patch_List_{}.xlsx".format(datetime.now().date())) == True:
+        print (" - File already exists, no need to re-process.")
+        return
     if os.path.exists(filename) == False:
         print (" - File not found, probably due to not downloading successfully.")
         return
