@@ -28,25 +28,31 @@ def download_problems():
         writer = csv.writer(csvfile)  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
-            page = requests.get(each).json()
-            time.sleep(1)
-            Code = page["cveNumber"]
-            #tqdm.write(f"{Code}")
-            Context = page["cveTitle"]
-            if "Chromium security severity" in Context:  # Edge specific, else continue
-                Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
-            elif "Chromium: CVE-" in Context:
-                Context = str(Context.replace(f"Chromium: {Code} ", ""))
-            #tqdm.write(f"{Context}")
-            if (isFirstRow):  # for first row, it's better to mark down how the CVEs are called officially
-                rowContent = [alertInfo[0], alertInfo[1], "Yes", Code, "Yes", Context]
-                isFirstRow = False
-            else:
-                rowContent = ["", "", "", Code, "Yes", Context]
-            if setting.alertType == "edge":
-                rowContent.append(setting.edgeVersion)
-            # print("\n", rowContent, '\n')  # to check rowContent list before writing to csv file
-            writer.writerow(rowContent)
+            print(each)
+            try:
+                page = requests.get(each).json()
+                time.sleep(1)
+                Code = page["cveNumber"]
+                #tqdm.write(f"{Code}")
+                Context = page["cveTitle"]
+                if "Chromium security severity" in Context:  # Edge specific, else continue
+                    Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
+                elif "Chromium: CVE-" in Context:
+                    Context = str(Context.replace(f"Chromium: {Code} ", ""))
+                #tqdm.write(f"{Context}")
+                if (isFirstRow):  # for first row, it's better to mark down how the CVEs are called officially
+                    rowContent = [alertInfo[0], alertInfo[1], "Yes", Code, "Yes", Context]
+                    isFirstRow = False
+                else:
+                    rowContent = ["", "", "", Code, "Yes", Context]
+                if setting.alertType == "edge":
+                    rowContent.append(setting.edgeVersion)
+                # print("\n", rowContent, '\n')  # to check rowContent list before writing to csv file
+                writer.writerow(rowContent)
+            except Exception as e:
+                rowContent = ["", "", "", Code, "?", e]
+                writer.writerow(rowContent)
+                print("Error occurred while writing, probablyit is not readable yet")
     return
 
 if __name__ == "__main__":
