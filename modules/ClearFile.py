@@ -26,4 +26,7 @@ def ClearTemp():
     current_directory = os.getcwd()
     tempDir = os.path.join(current_directory, r'temp') # previously set temp folder is in the same folder of execution
     if os.path.exists(tempDir):
-        os.rmdir(tempDir)
+        try:
+          os.rmdir(tempDir)
+        except OSError as e:
+          print(f"Error: {tempDir} : {e.strerror}")
