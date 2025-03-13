@@ -37,19 +37,23 @@ def process_GOV_Link(weblink):
     for item in urlList:
         if prefix in item:
             link_count += 1
-            for year in [str(x) for x in (range(2022, datetime.now().year+1))]:
-                if f"CVE-{year}-" in item:
-                    itemText = str(item.replace(prefix,""))
-                    itemText = str(re.sub('CVE-202.-','',itemText))
-                    if " (to CVE-" in itemText:
-                        temp = []
-                        temp = itemText.split(f" (to CVE-{year}-")
-                        temp[1] = temp[1].replace(")","")
-                        for _ in range (int(temp[0]),int(temp[1])+1):
-                            placeholder = str(f"CVE-{year}-")+str(_).zfill(4)
-                            CVE_List.append(placeholder)
-                    else:# Only one CVE
-                        CVE_List.append(str(f"CVE-{year}-")+str(itemText))
+            print (re.search(r"CVE-([0-9]{4})-*", item))
+            year = re.search(r"CVE-([0-9]{4})-*", item).group(1)
+            #for year in [str(x) for x in (range(2022, datetime.now().year+1))]:
+            if re.search("CVE-([0-9]{4})-*", item): # 
+                itemText = str(item.replace(prefix,""))
+                itemText = str(re.sub(r'CVE-([0-9]{4})-','',itemText))
+                print (itemText)
+                if " (to" in itemText:
+                    temp = []
+                    temp = re.split(r" \(to", itemText)
+                    temp[1] = temp[1].replace(")","")
+                    print(temp)
+                    for _ in range (int(temp[0]),int(temp[1])+1):
+                        placeholder = str(f"CVE-{year}-")+str(_).zfill(4)
+                        CVE_List.append(placeholder)
+                else:# Only one CVE
+                    CVE_List.append(str(f"CVE-{year}-")+str(itemText))
     if urlList != []:
         setting.lastCVE = urlList[-1].replace(prefix,"")
         print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {CVE_List[-1]}")    
