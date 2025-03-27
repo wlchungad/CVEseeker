@@ -81,11 +81,14 @@ def download_problems():
                         isFirstRow = False
                     else:
                         writer.writerow(["", "", "", Code, "Yes", Context])            
-            except (AttributeError, requests.exceptions.RequestException) as e: # NoneType and Timeout means API is unavailable for webscrapping
-                #print(e)
+            except (AttributeError, requests.exceptions.RequestException, urllib.error.HTTPError) as e: # NoneType and Timeout means API is unavailable for webscrapping
+                print(e)
                 # print ("Error getting content: API is unavailable")
                 Code = setting.lastCVE
-                writer.writerow(["", "", "", Code, "", "Error getting content: API is unavailable"])
+                try:
+                    writer.writerow([alertInfo[0], alertInfo[1], "?", Code, "?", "Error getting content: API is unavailable"])
+                except:
+                    writer.writerow(["", "", "", Code, "", "Error getting content: API is unavailable"])
                 break
     return
 
