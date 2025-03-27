@@ -28,7 +28,7 @@ def download_problems():
         writer = csv.writer(csvfile)  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
-            print(each)
+            #print(each)
             try:
                 page = requests.get(each).json()
                 time.sleep(1)
@@ -52,7 +52,7 @@ def download_problems():
             except Exception as e:
                 rowContent = ["", "", "", Code, "?", e]
                 writer.writerow(rowContent)
-                print("Error occurred while writing, probablyit is not readable yet")
+                print("Error occurred while writing, probably it is not readable yet")
     return
 
 if __name__ == "__main__":
