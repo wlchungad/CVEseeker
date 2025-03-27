@@ -26,10 +26,12 @@ def process_GOV_Link(weblink):
     # get links
     link_count = 0
     localFlag = False
-    urlList = [i.text for i in soup.find_all("li") if ("https://cve.mitre.org/" in i.text)]
+    urlList = [i.text for i in soup.find_all("li") if ("//cve.mitre.org/" in i.text)]
+    #print (urlList)
     if not urlList:
         localFlag = True
-        urlList = [i.text for i in soup.find_all("li") if ("https://cve.mitre.org/" in i.text)]
+        urlList = [i.text for i in soup.find_all("li") if ("//cve.mitre.org/" in i.text)]
+    urlList = [url.replace("http://", "https://") for url in urlList]
     if not localFlag:
         prefix = "https://cve.mitre.org/cgi-bin/cvename.cgi?name="
     else:
@@ -37,18 +39,19 @@ def process_GOV_Link(weblink):
     for item in urlList:
         if prefix in item:
             link_count += 1
-            print (re.search(r"CVE-([0-9]{4})-*", item))
-            year = re.search(r"CVE-([0-9]{4})-*", item).group(1)
+            pattern = re.compile(r"CVE-([0-9]{4})-*")
+            # print (re.search(pattern, item))
+            year = re.search(pattern, item).group(1)
             #for year in [str(x) for x in (range(2022, datetime.now().year+1))]:
-            if re.search("CVE-([0-9]{4})-*", item): # 
+            if re.search(pattern, item):
                 itemText = str(item.replace(prefix,""))
                 itemText = str(re.sub(r'CVE-([0-9]{4})-','',itemText))
-                print (itemText)
+                # print (itemText)
                 if " (to" in itemText:
                     temp = []
                     temp = re.split(r" \(to", itemText)
                     temp[1] = temp[1].replace(")","")
-                    print(temp)
+                    # print(temp)
                     for _ in range (int(temp[0]),int(temp[1])+1):
                         placeholder = str(f"CVE-{year}-")+str(_).zfill(4)
                         CVE_List.append(placeholder)
@@ -59,8 +62,7 @@ def process_GOV_Link(weblink):
         print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs, the last one is {CVE_List[-1]}")    
     else:
         setting.lastCVE = "ERROR"
-        print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs.\n\
-               However, the last CVE format is abnormal, and it will not be marked on CSV!")
+        print(f"There are {link_count} links, expanded to {len(CVE_List)} CVEs.\nHowever, the last CVE format is abnormal, and it will not be marked on CSV!")
     # output module
     with open("CVE List.txt", "w+") as txt_file:
         for line in CVE_List:
