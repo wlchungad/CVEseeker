@@ -51,7 +51,18 @@ def process_GOV_Link(weblink):
                     temp = []
                     temp = re.split(r" \(to", itemText)
                     temp[1] = temp[1].replace(")","")
-                    # print(temp)
+                    """
+                        2025-06-11 : because of the stupidity of the government staff, the CVE number can be wrong and malformatted
+                        Cant they read and proofread???
+                        we need to fix it before processing the lists of CVEs
+                        Example: CVE-2025-33052 (to CVE-33053)
+                    """
+                    print(temp)
+                    try:
+                        int(temp[1])
+                    except Exception as e:
+                        print(f"Error: {temp[1]} is not a valid CVE number") # it looks something like "CVE-33053"
+                        temp[1] = temp[1].replace("CVE-","").strip()
                     for _ in range (int(temp[0]),int(temp[1])+1):
                         placeholder = str(f"CVE-{year}-")+str(_).zfill(4)
                         CVE_List.append(placeholder)
