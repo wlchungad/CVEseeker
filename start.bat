@@ -1,8 +1,8 @@
 @echo off
 setlocal
 REM Python environment: pip check and update
-python -m ensurepip
-python -m pip install --upgrade --quiet pip 
+:: python -m ensurepip
+:: python -m pip install --upgrade --quiet pip 
 
 REM Python environment: create a virtual environment
 python -m venv env
