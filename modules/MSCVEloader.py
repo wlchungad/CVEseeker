@@ -28,7 +28,8 @@ def download_problems():
         writer = csv.writer(csvfile)  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
-            #print(each)
+            Code = each.split("/")[-1]  # get the last part of the URL, which is the CVE code
+            # print(f"CVE Code: {Code}")
             try:
                 page = requests.get(each).json()
                 time.sleep(1)
