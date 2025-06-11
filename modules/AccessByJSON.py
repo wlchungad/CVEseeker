@@ -68,6 +68,8 @@ def download_problems():
         writer = csv.writer(csvfile)  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
+            Code = each.replace("https://cveawg.mitre.org/api/cve/", "")
+            # print(Code)
             try:
                 with urllib.request.urlopen(each) as url:    
                     data = json.load(url)
@@ -82,14 +84,15 @@ def download_problems():
                     else:
                         writer.writerow(["", "", "", Code, "Yes", Context])            
             except (AttributeError, requests.exceptions.RequestException, urllib.error.HTTPError) as e: # NoneType and Timeout means API is unavailable for webscrapping
-                print(e)
-                # print ("Error getting content: API is unavailable")
-                Code = setting.lastCVE
+                print("Error getting content: API is unavailable")
+                print(f"Error message: {e}")
+                # Code = setting.lastCVE
                 try:
                     writer.writerow([alertInfo[0], alertInfo[1], "?", Code, "?", "Error getting content: API is unavailable"])
                 except:
                     writer.writerow(["", "", "", Code, "", "Error getting content: API is unavailable"])
-                break
+                # break
+                continue
     return
 
 if __name__ == "__main__":
