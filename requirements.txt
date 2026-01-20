@@ -4,3 +4,5 @@ validators
 tqdm
 bs4
 requests
+geckodriver-autoinstaller
+glom

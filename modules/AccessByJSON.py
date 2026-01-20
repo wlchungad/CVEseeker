@@ -6,6 +6,7 @@ from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
 import time
+from glom import glom, Coalesce
 import urllib.request, json 
 # improve performance by calling bs4 instead of pure selenium
 def download_problems():
@@ -68,14 +69,14 @@ def download_problems():
         writer = csv.writer(csvfile)  # header is generated in setting, we just append to that csv file
         isFirstRow = True
         for each in tqdm(temp, desc="Progress: "):  # progress bar added
-            Code = each.replace("https://cveawg.mitre.org/api/cve/", "")
             # print(Code)
             try:
                 with urllib.request.urlopen(each) as url:    
                     data = json.load(url)
                     # print (data)
-                    Code = data['cveMetadata']['cveId']
-                    Context = data['containers']['cna']['descriptions'][0]['value']
+                    # Code = data['cveMetadata']['cveId']
+                    Code = glom(data, Coalesce('cveMetadata.cveId', default = each.replace("https://cveawg.mitre.org/api/cve/", "")))
+                    Context = glom(data, Coalesce('containers.cna.descriptions.0.value', default = "NIL"))
                     if "Chromium security severity" in Context:  # Edge specific, else continue
                         Context = str((Context.split(" in Google Chrome prior to"))[0]).strip()
                     if (isFirstRow):  # for first row, it's better to mark down how the CVEs are called officially
@@ -84,6 +85,7 @@ def download_problems():
                     else:
                         writer.writerow(["", "", "", Code, "Yes", Context])            
             except (AttributeError, requests.exceptions.RequestException, urllib.error.HTTPError) as e: # NoneType and Timeout means API is unavailable for webscrapping
+                Code = each.replace("https://cveawg.mitre.org/api/cve/", "")
                 print("Error getting content: API is unavailable")
                 print(f"Error message: {e}")
                 # Code = setting.lastCVE

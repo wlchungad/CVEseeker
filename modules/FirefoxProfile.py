@@ -1,6 +1,8 @@
 from selenium import webdriver
 #from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+import geckodriver_autoinstaller as gdai
 #from selenium.common.exceptions import NoSuchElementException
 from . import setting
 import os
@@ -27,4 +29,12 @@ def FFdriver(download_dir=None):
             os.makedirs(final_directory)
         option.set_preference("browser.download.dir", final_directory)
         setting.downloadFolder = final_directory
-    return webdriver.Firefox(options=option)
+    # ensure geckodriver is present and up-to-date
+    try:
+        gecko_path = gdai.install()
+        service = Service(gecko_path)
+        print(f"Gecko install successful, location: {gecko_path}")
+        return webdriver.Firefox(service=service, options=option)
+    except Exception:
+        # fallback to letting Selenium locate the driver (Selenium Manager)
+        return webdriver.Firefox(options=option)
